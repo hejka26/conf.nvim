@@ -48,7 +48,7 @@ require('lazy').setup({
   -- NOTE: Plugin configuration and list is in seperate folder
   require 'config.plugins.git',
 
-  require 'config.plugins.code-dev',
+  require 'config.plugins.code-basics',
 
   require 'config.plugins.visual',
 
