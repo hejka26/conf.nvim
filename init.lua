@@ -98,6 +98,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Disable linewrapping (Sin)
+vim.o.wrap = false
+
 require 'config.keymaps'
 
 -- [[ Highlight on yank ]]
