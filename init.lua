@@ -91,7 +91,7 @@ require('lazy').setup({
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- Additional lua configuration, makes nvim stuff amazing!
+      -- Additional lua configuration for editing nvim configuration and plugin development.
       'folke/neodev.nvim',
     },
   },
