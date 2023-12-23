@@ -423,10 +423,12 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
+-- NOTE: The annotation on next line is needed due to treesitter mantainers not setting their god damn parameters as optional, why
+---@diagnostic disable: missing-fields
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = {'go', 'lua', 'python', 'rust', 'vimdoc', 'bash' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -488,6 +490,7 @@ vim.defer_fn(function()
     },
   }
 end, 0)
+---@diagnostic enable: missing-fields
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
