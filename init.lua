@@ -61,7 +61,7 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
--- Set highlight on search
+-- Don't highlight every match on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
@@ -92,10 +92,10 @@ vim.wo.signcolumn = 'yes'
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
--- Set completeopt to have a better completion experience
+-- Shows completion menu when there's only one match and dosn't auto select
 vim.o.completeopt = 'menuone,noselect'
 
--- NOTE: You should make sure your terminal supports this
+-- Increase range of colors 
 vim.o.termguicolors = true
 
 -- Disable linewrapping (Sin)
