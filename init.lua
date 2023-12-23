@@ -95,6 +95,10 @@ require('lazy').setup({
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
+      -- Snippet Engine & its associated nvim-cmp source
+      -- NOTE: nvim-cmp requires snipper engine to be installed, should have checked before removing it.
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
@@ -536,6 +540,10 @@ mason_lspconfig.setup_handlers {
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
+-- Needed for cmp to work
+local luasnip = require 'luasnip'
+require('luasnip.loaders.from_vscode').lazy_load()
+luasnip.config.setup {}
 
 cmp.setup {
   completion = {
@@ -554,6 +562,8 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -561,6 +571,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -569,6 +581,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'path' },
+    { name = 'luasnip' },
   },
 }
 
