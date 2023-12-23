@@ -190,11 +190,14 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    -- I just vibe with this theme
+    'Mofiqul/dracula.nvim',
     priority = 1000,
+    opts = {
+      transparent_bg = true
+    },
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'dracula'
     end,
   },
 
