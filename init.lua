@@ -568,9 +568,9 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {
     settings = {
-      ["rust-analyzer"] = {
+      ['rust-analyzer'] = {
         checkOnSave = {
-          command = "clippy"
+          command = 'clippy'
         }
       }
     }
