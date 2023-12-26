@@ -26,7 +26,7 @@ return {
         end
 
         -- Navigation
-       map({ 'n', 'v' }, ']h', function()
+        map({ 'n', 'v' }, ']h', function()
           if vim.wo.diff then
             return ']h'
           end
@@ -78,6 +78,4 @@ return {
       end,
     },
   },
-
-
 }

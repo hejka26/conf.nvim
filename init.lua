@@ -54,8 +54,10 @@ require('lazy').setup({
 
   require 'config.plugins.telescope',
 
--- NOTE: Following line can supposedly auto import all lua files from set folder, need to figure it out
--- { import = 'custom.plugins' },
+  require 'config.plugins.debug',
+
+  -- NOTE: Following line can supposedly auto import all lua files from set folder, need to figure it out
+  -- { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -95,7 +97,7 @@ vim.o.timeoutlen = 300
 -- Shows completion menu when there's only one match and dosn't auto select
 vim.o.completeopt = 'menuone,noselect'
 
--- Increase range of colors 
+-- Increase range of colors
 vim.o.termguicolors = true
 
 -- Disable linewrapping (Sin)

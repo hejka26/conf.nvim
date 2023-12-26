@@ -1,25 +1,21 @@
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
-
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
+
   dependencies = {
-    -- Creates a beautiful debugger UI
+    -- Adds UI
     'rcarriga/nvim-dap-ui',
 
-    -- Installs the debug adapters for you
+    -- Installs the debug adapters automatically
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
 
-    -- Add your own debuggers here
+    -- Section to add debugger extensions
     'leoluz/nvim-dap-go',
+    'simrat39/rust-tools.nvim',
+    'mfussenegger/nvim-dap-python',
+
+    -- Dependency for rust tools
+    'nvim-lua/plenary.nvim',
   },
   config = function()
     local dap = require 'dap'
@@ -34,15 +30,13 @@ return {
       -- see mason-nvim-dap README for more information
       handlers = {},
 
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
       ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
+        'codelldb',
         'delve',
       },
     }
 
-    -- Basic debugging keymaps, feel free to change to your liking!
+    -- Basic debugging keymaps
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
     vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
@@ -83,5 +77,22 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+    require('dap-python').setup()
+
+    -- Config Rust dap on linux,
+    -- TODO: make work on windows...
+    HOME_PATH = os.getenv 'HOME' .. '/'
+    MASON_PATH = HOME_PATH .. '.local/share/nvim/mason/packages/'
+    local codelldb_path = MASON_PATH .. 'codelldb/extension/adapter/codelldb'
+    local liblldb_path = MASON_PATH .. 'codelldb/extension/lldb/lib/liblldb.so'
+
+    local rust_opts = {
+      -- ... other configs
+      dap = {
+        adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
+      },
+    }
+    -- Normal setup
+    require('rust-tools').setup(rust_opts)
   end,
 }

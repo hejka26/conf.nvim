@@ -1,13 +1,13 @@
 return {
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
 
   {
     -- I just vibe with this theme
     'Mofiqul/dracula.nvim',
     priority = 1000,
     opts = {
-      transparent_bg = true
+      transparent_bg = true,
     },
     config = function()
       vim.cmd.colorscheme 'dracula'
@@ -36,6 +36,4 @@ return {
     main = 'ibl',
     opts = {},
   },
-
-
 }
