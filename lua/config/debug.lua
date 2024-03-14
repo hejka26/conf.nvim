@@ -2,19 +2,20 @@ local dap = require 'dap'
 local dapui = require 'dapui'
 
 require('mason-nvim-dap').setup {
-  -- Makes a best effort to setup the various debuggers with
-  -- reasonable debug configurations
-  automatic_setup = true,
-
-  -- You can provide additional configuration to the handlers,
-  -- see mason-nvim-dap README for more information
-  handlers = {},
-
   ensure_installed = {
     'codelldb',
     'debugpy',
     'delve',
+    'cpptools',
   },
+  -- Makes a best effort to setup the various debuggers with
+  -- reasonable debug configurations
+  automatic_setup = true,
+
+  automatic_installation = true,
+  -- You can provide additional configuration to the handlers,
+  -- see mason-nvim-dap README for more information
+  handlers = {},
 }
 
 -- Basic debugging keymaps

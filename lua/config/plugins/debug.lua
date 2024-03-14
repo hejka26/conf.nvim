@@ -17,4 +17,5 @@ return {
     -- Dependency for rust tools
     'nvim-lua/plenary.nvim',
   },
+  'jay-babu/mason-nvim-dap.nvim',
 }
