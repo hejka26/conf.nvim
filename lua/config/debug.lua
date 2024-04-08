@@ -6,7 +6,6 @@ require('mason-nvim-dap').setup {
     'codelldb',
     'debugpy',
     'delve',
-    'cpptools',
   },
   -- Makes a best effort to setup the various debuggers with
   -- reasonable debug configurations
@@ -76,3 +75,19 @@ local rust_opts = {
 }
 -- Normal setup
 require('rust-tools').setup(rust_opts)
+
+-- setup codelldb for cpp and c
+dap.configurations.cpp = {
+  {
+    name = 'Launch file',
+    type = 'codelldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  },
+}
+
+dap.configurations.c = dap.configurations.cpp

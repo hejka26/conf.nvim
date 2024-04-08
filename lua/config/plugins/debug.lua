@@ -4,6 +4,8 @@ return {
   dependencies = {
     -- Adds UI
     'rcarriga/nvim-dap-ui',
+    -- Dependency of dap-ui
+    'nvim-neotest/nvim-nio',
 
     -- Installs the debug adapters automatically
     'williamboman/mason.nvim',
@@ -17,5 +19,4 @@ return {
     -- Dependency for rust tools
     'nvim-lua/plenary.nvim',
   },
-  'jay-babu/mason-nvim-dap.nvim',
 }

@@ -36,11 +36,6 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[w]orkspace [l]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    require('conform').format()
-  end, { desc = 'Format current buffer with Conform' })
 end
 
 -- document existing key chains
@@ -84,8 +79,8 @@ local servers = {
       },
     },
   },
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  cssls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -129,7 +124,7 @@ mason_lspconfig.setup_handlers {
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'go', 'lua', 'python', 'rust', 'vimdoc', 'bash', 'cpp' },
+    ensure_installed = { 'go', 'lua', 'python', 'rust', 'vimdoc', 'bash', 'cpp', 'javascript', 'html', 'css', 'scss' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -245,3 +240,43 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+--Setup code formatting
+require('formatter').setup {
+  logging = true,
+  log_leve = vim.log.levels.WARN,
+  filetype = {
+    lua = {
+      require('formatter.filetypes.lua').stylua(),
+    },
+    cpp = {
+      require('formatter.filetypes.cpp').clangformat(),
+    },
+    js = {
+      require('formatter.filetypes.javascript').prettier(),
+    },
+    mjs = {
+      require('formatter.filetypes.javascript').prettier(),
+    },
+    cjs = {
+      require('formatter.filetypes.javascript').prettier(),
+    },
+    html = {
+      require('formatter.filetypes.html').prettier(),
+    },
+    css = {
+      require('formatter.filetypes.css').prettier(),
+    },
+    scss = {
+      require('formatter.filetypes.css').prettier(),
+    },
+  },
+}
+-- Add auto format on save for formatter
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+augroup('__formatter__', { clear = true })
+autocmd('BufWritePost', {
+  group = '__formatter__',
+  command = ':FormatWriteLock',
+})
