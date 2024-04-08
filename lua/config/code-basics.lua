@@ -72,15 +72,13 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {
     settings = {
-      ['rust-analyzer'] = {
-        checkOnSave = {
+      ['rust_analyzer'] = {
+        check = {
           command = 'clippy',
         },
       },
     },
   },
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
-  cssls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -89,6 +87,9 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+  typescript_language_server = {},
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  cssls = {},
 }
 
 -- Setup neovim lua configuration
@@ -253,13 +254,13 @@ require('formatter').setup {
       require('formatter.filetypes.cpp').clangformat(),
     },
     js = {
-      require('formatter.filetypes.javascript').prettier(),
+      require('formatter.filetypes.javascript').biome(),
     },
     mjs = {
-      require('formatter.filetypes.javascript').prettier(),
+      require('formatter.filetypes.javascript').biome(),
     },
     cjs = {
-      require('formatter.filetypes.javascript').prettier(),
+      require('formatter.filetypes.javascript').biome(),
     },
     html = {
       require('formatter.filetypes.html').prettier(),
