@@ -87,7 +87,7 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
-  typescript_language_server = {},
+  tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   cssls = {},
 }
