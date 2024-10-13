@@ -39,18 +39,23 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
-  ['<leader>gh'] = { name = '[g]it [h]unk', _ = 'which_key_ignore' },
-  ['<leader>f'] = { name = '[f]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[w]orkspace', _ = 'which_key_ignore' },
-}
+require('which-key').add ({
+    { "<leader>c", group = "[c]ode" },
+    { "<leader>c_", hidden = true },
+    { "<leader>f", group = "[f]earch" },
+    { "<leader>f_", hidden = true },
+    { "<leader>g", group = "[g]it" },
+    { "<leader>g_", hidden = true },
+    { "<leader>gh", group = "[g]it [h]unk" },
+    { "<leader>gh_", hidden = true },
+    { "<leader>w", group = "[w]orkspace" },
+    { "<leader>w_", hidden = true },
+})
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-  ['<leader>'] = { name = 'VISUAL <leader>' },
-  ['<leader>gh'] = { 'Git [H]unk' },
+require('which-key').add({
+    { "<leader>", group = "VISUAL <leader>", mode = "v" },
+    { "<leader>gh", desc = "Git [H]unk", mode = "v" },
 }, { mode = 'v' })
 
 -- mason-lspconfig requires that these setup functions are called in this order
