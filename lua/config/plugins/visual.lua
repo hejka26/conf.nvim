@@ -1,6 +1,8 @@
 return {
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
+  { 'echasnovski/mini.icons', opts = {}},
+  { 'nvim-tree/nvim-web-devicons', opts = {}},
 
   {
     -- I just vibe with this theme
