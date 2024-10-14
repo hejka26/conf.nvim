@@ -50,5 +50,8 @@ return {
   {
     -- Formatter support
     'mhartington/formatter.nvim',
+
+    -- Live reload HTML, CSS, and JavaScript files
+    { 'barrett-ruth/live-server.nvim', opts = {} },
   },
 }
