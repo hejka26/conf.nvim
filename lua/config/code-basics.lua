@@ -86,7 +86,22 @@ local servers = {
   ts_ls = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   cssls = {},
+  hyprls = {},
 }
+
+-- Make nvim load hyprls when configing hypr apps.
+-- Hyprlang LSP
+vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
+		pattern = {"*.hl", "hypr*.conf"},
+		callback = function(event)
+				print(string.format("starting hyprls for %s", vim.inspect(event)))
+				vim.lsp.start {
+						name = "hyprlang",
+						cmd = {"hyprls"},
+						root_dir = vim.fn.getcwd(),
+				}
+		end
+})
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -122,7 +137,7 @@ mason_lspconfig.setup_handlers {
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'go', 'lua', 'python', 'rust', 'vimdoc', 'bash', 'cpp', 'javascript', 'html', 'css', 'scss', 'glimmer' },
+    ensure_installed = { 'go', 'lua', 'python', 'rust', 'vimdoc', 'bash', 'cpp', 'javascript', 'html', 'css', 'scss', 'glimmer', 'hyprlang' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
