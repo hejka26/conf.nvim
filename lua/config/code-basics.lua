@@ -75,15 +75,6 @@ local servers = {
   clangd = {},
   -- gopls = {},
   -- pyright = {},
-  rust_analyzer = {
-    settings = {
-      ['rust_analyzer'] = {
-        check = {
-          command = 'clippy',
-        },
-      },
-    },
-  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -120,6 +111,7 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
+  ['rust_analyzer'] = function() end,
 }
 
 -- [[ Configure Treesitter ]]

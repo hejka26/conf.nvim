@@ -50,13 +50,11 @@ return {
   {
     -- Formatter support
     'mhartington/formatter.nvim',
-
   },
 
-
-    -- Live reload HTML, CSS, and JavaScript files
-    { 'barrett-ruth/live-server.nvim', opts = {} },
+  -- Live reload HTML, CSS, and JavaScript files
+  { 'barrett-ruth/live-server.nvim', opts = {} },
   -- Mostly for webdev tbh
   --
-    { 'ziontee113/color-picker.nvim', opts = {} },
+  { 'ziontee113/color-picker.nvim', opts = {} },
 }

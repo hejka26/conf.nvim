@@ -13,7 +13,7 @@ return {
 
     -- Section to add debugger extensions
     'leoluz/nvim-dap-go',
-    'simrat39/rust-tools.nvim',
+    'mrcjkb/rustaceanvim',
     'mfussenegger/nvim-dap-python',
 
     -- Dependency for rust tools

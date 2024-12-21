@@ -60,22 +60,6 @@ dap.listeners.before.event_exited['dapui_config'] = dapui.close
 require('dap-go').setup()
 require('dap-python').setup()
 
--- Config Rust dap on linux,
--- TODO: make work on windows...
-HOME_PATH = os.getenv 'HOME' .. '/'
-MASON_PATH = HOME_PATH .. '.local/share/nvim/mason/packages/'
-local codelldb_path = MASON_PATH .. 'codelldb/extension/adapter/codelldb'
-local liblldb_path = MASON_PATH .. 'codelldb/extension/lldb/lib/liblldb.so'
-
-local rust_opts = {
-  -- ... other configs
-  dap = {
-    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
-  },
-}
--- Normal setup
-require('rust-tools').setup(rust_opts)
-
 -- setup codelldb for cpp and c
 dap.configurations.cpp = {
   {
