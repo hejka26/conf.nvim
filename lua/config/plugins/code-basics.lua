@@ -11,16 +11,20 @@ return {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'folke/neodev.nvim',
 
       --Status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Additional lua configuration for editing nvim configuration and plugin development.
-      'folke/neodev.nvim',
+      {
+        'j-hui/fidget.nvim',
+        opts = {
+          notification = {
+            override_vim_notify = true, -- Automatically override vim.notify() with Fidget
+          },
+        },
+      },
     },
   },
-
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
