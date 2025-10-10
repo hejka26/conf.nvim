@@ -1,21 +1,21 @@
 return {
-	"mfussenegger/nvim-dap",
+  'mfussenegger/nvim-dap',
 
-	dependencies = {
-		-- Adds UI
-		"rcarriga/nvim-dap-ui",
-		-- Dependency of dap-ui
-		"nvim-neotest/nvim-nio",
+  dependencies = {
+    -- Adds UI
+    'rcarriga/nvim-dap-ui',
+    -- Dependency of dap-ui
+    'nvim-neotest/nvim-nio',
 
-		-- Installs the debug adapters automatically
-		"williamboman/mason.nvim",
-		"jay-babu/mason-nvim-dap.nvim",
+    -- Installs the debug adapters automatically
+    'williamboman/mason.nvim',
+    'jay-babu/mason-nvim-dap.nvim',
 
-		-- Section to add debugger extensions
-		"leoluz/nvim-dap-go",
-		"mfussenegger/nvim-dap-python",
+    -- Section to add debugger extensions
+    'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
 
-		-- Dependency for rust tools
-		"nvim-lua/plenary.nvim",
-	},
+    -- Dependency for rust tools
+    'nvim-lua/plenary.nvim',
+  },
 }

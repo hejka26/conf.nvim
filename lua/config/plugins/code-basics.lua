@@ -51,14 +51,17 @@ return {
     build = ':TSUpdate',
   },
 
+  -- Formatter support
   {
-    -- Formatter support
-    'mhartington/formatter.nvim',
+    'stevearc/conform.nvim',
+    dependencies = {
+      -- autoinstall formatters
+      { 'zapling/mason-conform.nvim', opts = {} },
+    },
   },
 
   -- Live reload HTML, CSS, and JavaScript files
   { 'barrett-ruth/live-server.nvim', opts = {} },
   -- Mostly for webdev tbh
-  --
   { 'ziontee113/color-picker.nvim', opts = {} },
 }
