@@ -75,14 +75,7 @@ local servers = {
 	clangd = {},
 	rust_analyzer = {},
 	pyright = {},
-	lua_ls = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-			-- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-			-- diagnostics = { disable = { 'missing-fields' } },
-		},
-	},
+	lua_ls = {},
 	ts_ls = {},
 	html = { filetypes = { "html", "twig", "hbs" } },
 	cssls = {},
@@ -116,6 +109,29 @@ local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
 	ensure_installed = vim.tbl_keys(servers),
 })
+
+-- Lua LSP config
+vim.lsp.config.lua_ls = {
+	settings = {
+		Lua = {
+			workspace = { checkThirdParty = false },
+			telemetry = { enable = false },
+			-- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+			-- diagnostics = { disable = { 'missing-fields' } },
+		},
+	},
+}
+-- Rust LSP config
+vim.lsp.config.rust_analyzer = {
+	settings = {
+		autoformat = true,
+		["rust-analyzer"] = {
+			check = {
+				command = "clippy",
+			},
+		},
+	},
+}
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
