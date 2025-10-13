@@ -11,7 +11,7 @@ return {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
+      'folke/lazydev.nvim',
 
       --Status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -27,15 +27,12 @@ return {
   },
   {
     -- Autocompletion
-    'hrsh7th/nvim-cmp',
+    'Saghen/blink.cmp',
+    version = '1.*',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       -- NOTE: nvim-cmp requires snipper engine to be installed, should have checked before removing it.
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
     },
   },
 
