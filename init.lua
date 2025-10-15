@@ -104,6 +104,9 @@ vim.o.termguicolors = true
 -- Disable linewrapping (Sin)
 vim.o.wrap = false
 
+-- Highlight cursor line
+vim.o.cursorline = true
+
 require 'config.keymaps'
 
 -- [[ Highlight on yank ]]
