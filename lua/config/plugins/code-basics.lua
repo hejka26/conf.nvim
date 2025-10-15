@@ -25,8 +25,9 @@ return {
       },
     },
   },
+
+  -- Autocompletion
   {
-    -- Autocompletion
     'Saghen/blink.cmp',
     version = '1.*',
     dependencies = {
@@ -36,6 +37,12 @@ return {
     },
   },
 
+  --auto close pairs
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+  },
   -- Add region to code implementation
   { 'numToStr/Comment.nvim', opts = {} },
 
