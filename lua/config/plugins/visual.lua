@@ -3,6 +3,8 @@ return {
   { 'folke/which-key.nvim', opts = {} },
   { 'echasnovski/mini.icons', opts = {} },
   { 'nvim-tree/nvim-web-devicons', opts = {} },
+  -- To punish me.
+  { 'm4xshen/hardtime.nvim', opts = {} },
 
   {
     -- I just vibe with this theme
