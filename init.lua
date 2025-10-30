@@ -60,6 +60,24 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 }, {})
 
+-- [[Color Scheme]]
+require('gruvbox').setup {
+  terminal_colors = true, -- add neovim terminal colors
+  contrast = 'hard', -- can be "hard", "soft" or empty string
+}
+
+vim.o.background = 'dark' -- or "light" for light mode
+vim.cmd 'colorscheme gruvbox'
+
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    theme = 'gruvbox',
+    component_separators = '|',
+    section_separators = '',
+  },
+}
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
