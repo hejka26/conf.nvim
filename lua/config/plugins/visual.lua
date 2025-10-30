@@ -8,29 +8,13 @@ return {
 
   {
     -- I just vibe with this theme
-    'Mofiqul/dracula.nvim',
+    'ellisonleao/gruvbox.nvim',
     priority = 1000,
-    opts = {
-      transparent_bg = true,
-      italic_comment = true,
-    },
-    config = function()
-      vim.cmd.colorscheme 'dracula'
-    end,
   },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'dracula-nvim',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
   },
 
   {
