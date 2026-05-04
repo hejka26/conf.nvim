@@ -157,7 +157,7 @@ vim.lsp.config.rust_analyzer = {
 -- NOTE: The annotation on next line is needed due to treesitter mantainers not setting their god damn parameters as optional, why
 ---@diagnostic disable: missing-fields
 vim.defer_fn(function()
-  require('nvim-treesitter.configs').setup {
+  require('nvim-treesitter.config').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = {
       'lua',
@@ -234,7 +234,7 @@ vim.defer_fn(function()
   }
 end, 0)
 ---@diagnostic enable: missing-fields
-require 'nvim-treesitter.configs'
+require 'nvim-treesitter.config'
 
 -- Needed for cmp to work.
 local luasnip = require 'luasnip'

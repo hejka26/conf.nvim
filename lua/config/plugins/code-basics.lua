@@ -50,8 +50,12 @@ return {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        branch = 'main',
+      },
     },
+    branch = 'main',
     build = ':TSUpdate',
   },
 
@@ -65,7 +69,7 @@ return {
   },
 
   -- Live reload HTML, CSS, and JavaScript files
-  { 'barrett-ruth/live-server.nvim', opts = {} },
+  { 'barrett-ruth/live-server.nvim' },
   -- Mostly for webdev tbh
   { 'ziontee113/color-picker.nvim', opts = {} },
 }
