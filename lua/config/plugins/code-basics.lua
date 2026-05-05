@@ -72,4 +72,5 @@ return {
   { 'barrett-ruth/live-server.nvim' },
   -- Mostly for webdev tbh
   { 'ziontee113/color-picker.nvim', opts = {} },
+  { 'slint-ui/vim-slint' },
 }

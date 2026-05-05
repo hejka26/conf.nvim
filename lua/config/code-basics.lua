@@ -116,6 +116,7 @@ local servers = {
   ts_ls = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   cssls = {},
+  slint_lsp = {},
 }
 
 -- Setup neovim lua configuration
@@ -167,10 +168,9 @@ vim.defer_fn(function()
       'bash',
       'cpp',
       'javascript',
-      'c_sharp',
       'html',
       'css',
-      'scss',
+      'slint',
     },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

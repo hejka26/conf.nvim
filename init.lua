@@ -64,6 +64,13 @@ require('lazy').setup({
 require('gruvbox').setup {
   terminal_colors = true, -- add neovim terminal colors
   contrast = 'hard', -- can be "hard", "soft" or empty string
+  italic = {
+    strings = false,
+    emphasis = false,
+    comments = false,
+    operators = false,
+    folds = false,
+  },
 }
 
 vim.o.background = 'dark' -- or "light" for light mode
