@@ -160,6 +160,14 @@ return {
       }
       -- BasedPyright LSP config
       vim.lsp.config.basedpyright = {
+        root_markers = {
+          'pyrightconfig.json',
+          'pyproject.toml',
+          'setup.py',
+          'setup.cfg',
+          'Pipfile',
+          '.git',
+        },
         settings = {
           basedpyright = {
             -- Disable organize imports in favor of Ruff
