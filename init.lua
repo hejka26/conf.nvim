@@ -26,7 +26,7 @@ vim.g.maplocalleader = ' '
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     'git',
     'clone',
@@ -39,51 +39,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure plugins ]]
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: Plugin configuration and list is in seperate folder
-  require 'config.plugins.git',
-
-  require 'config.plugins.code-basics',
-
-  require 'config.plugins.visual',
-
-  require 'config.plugins.telescope',
-
-  require 'config.plugins.debug',
-
-  -- NOTE: Following line can supposedly auto import all lua files from set folder, need to figure it out
-  -- { import = 'custom.plugins' },
+  { import = 'config.plugins' },
 }, {})
 
--- [[Color Scheme]]
-require('gruvbox').setup {
-  terminal_colors = true, -- add neovim terminal colors
-  contrast = 'hard', -- can be "hard", "soft" or empty string
-  italic = {
-    strings = false,
-    emphasis = false,
-    comments = false,
-    operators = false,
-    folds = false,
-  },
-}
 
-vim.o.background = 'dark' -- or "light" for light mode
-vim.cmd 'colorscheme gruvbox'
-
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'gruvbox',
-    component_separators = '|',
-    section_separators = '',
-  },
-}
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -145,11 +105,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Load configuration for fuzzy finder
-require 'config.telescope'
-
-require 'config.code-basics'
-
-require 'config.debug'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
