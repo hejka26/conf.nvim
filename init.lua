@@ -105,5 +105,23 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[ Normalize Windows path drive letter case ]]
+-- Prevents duplicate buffers and absolute path formatting issues from LSP definitions/references
+if vim.fn.has 'win32' == 1 then
+  vim.api.nvim_create_autocmd({ 'BufAdd' }, {
+    callback = function(event)
+      local name = vim.api.nvim_buf_get_name(event.buf)
+      if name:sub(2, 2) == ':' then
+        local first_char = name:sub(1, 1)
+        local upper_char = first_char:upper()
+        if first_char ~= upper_char then
+          local normalized = upper_char .. name:sub(2)
+          vim.api.nvim_buf_set_name(event.buf, normalized)
+        end
+      end
+    end,
+  })
+end
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
