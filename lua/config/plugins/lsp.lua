@@ -99,6 +99,8 @@ return {
         { '<leader>g_', hidden = true },
         { '<leader>gh', group = '[g]it [h]unk' },
         { '<leader>gh_', hidden = true },
+        { '<leader>t', group = '[t]oggle' },
+        { '<leader>t_', hidden = true },
         { '<leader>w', group = '[w]orkspace' },
         { '<leader>w_', hidden = true },
       }
