@@ -16,6 +16,7 @@ return {
           typescript = { 'biome' },
           css = { 'biome' },
           html = { 'prettier' },
+          python = { 'ruff_organize_imports', 'ruff_format' },
         },
         format_on_save = {
           -- These options will be passed to conform.format()

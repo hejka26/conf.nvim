@@ -32,7 +32,7 @@ return {
           map('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction')
 
           map('gd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
-          map('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+          map('grr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
           map('gI', require('telescope.builtin').lsp_implementations, '[g]oto [I]mplementation')
           map('gy', require('telescope.builtin').lsp_type_definitions, '[g]oto t[y]pe Definition')
           map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[f]ind document [s]ymbols')
@@ -57,6 +57,10 @@ return {
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client then
+            if client.name == 'ruff' then
+              -- Disable hover in favor of basedpyright
+              client.server_capabilities.hoverProvider = false
+            end
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
@@ -116,7 +120,8 @@ return {
       local servers = {
         clangd = {},
         rust_analyzer = {},
-        pyright = {},
+        basedpyright = {},
+        ruff = {},
         lua_ls = {},
         ts_ls = {},
         html = { filetypes = { 'html', 'twig', 'hbs' } },
@@ -153,6 +158,33 @@ return {
           },
         },
       }
+      -- BasedPyright LSP config
+      vim.lsp.config.basedpyright = {
+        settings = {
+          basedpyright = {
+            -- Disable organize imports in favor of Ruff
+            disableOrganizeImports = true,
+            analysis = {
+              typeCheckingMode = "standard", -- Prevent aggressive type annotation checks
+              -- Avoid duplicate diagnostics already covered by Ruff
+              diagnosticSeverityOverrides = {
+                reportUnusedImport = "none",
+                reportUnusedVariable = "none",
+                -- Disable warnings related to not explicitly defining types
+                reportUnknownParameterType = "none",
+                reportUnknownArgumentType = "none",
+                reportUnknownVariableType = "none",
+                reportUnknownMemberType = "none",
+                reportUnknownLambdaType = "none",
+                reportMissingParameterType = "none",
+                reportMissingTypeArgument = "none",
+              },
+            },
+          },
+        },
+      }
+      -- Disable legacy pyright server to prevent duplicate diagnostics/references
+      vim.lsp.enable('pyright', false)
     end,
   },
 }
