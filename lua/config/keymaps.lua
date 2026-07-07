@@ -16,4 +16,4 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- File Explorer (Oil) keymap
-vim.keymap.set('n', '<leader>O', '<cmd>Oil<cr>', { desc = '[O]pen parent directory in Oil' })
+vim.keymap.set('n', '<leader>o', '<cmd>Oil<cr>', { desc = '[o]pen parent directory in Oil' })
